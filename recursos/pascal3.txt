@@ -1,0 +1,10 @@
+program teste; {programa exemplo}
+var
+	valor1: integer;
+	valor2: real;
+	valor3: boolean;
+begin
+	valor1 := 10;
+	valor2 := 8.;
+	if(valor1<===><>><<valor2)
+end.

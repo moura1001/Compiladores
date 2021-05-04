@@ -1,0 +1,39 @@
+program exemplo;
+var a,b: integer;
+
+	procedure writeln(e:boolean);
+	begin
+	end;
+
+	procedure p (x:integer);
+	var b,c: integer;
+		p_aux: boolean;
+		b_aux: real;
+	begin
+		b := x + x{+ y};
+		b_aux := -x + 9./5 *b {- (true and p_aux)};
+		if((x<0) and not(b_aux<c)) then
+		begin
+			writeln((true and p_aux) or false and p_aux);
+			p(c);
+		end;
+	end;
+
+	procedure q;
+	var c,d: integer;
+
+		procedure r (y:integer);
+		var e,f: integer;
+		begin
+			a := y;
+		end;
+
+	begin
+		c := 4;
+	end;
+
+begin
+	a := b;
+end.
+
+

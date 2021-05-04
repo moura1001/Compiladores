@@ -1,0 +1,29 @@
+program Hello;
+	var x,y,z:integer;
+
+	procedure proc1;
+	begin
+	end;
+
+	begin
+		x:=10;
+		y:=25;
+		z:=x+y;
+
+		if(x < y) then
+			proc1;
+			{begin
+				x:=x+4*10;
+				y:=y+25;
+				z:=x+y;
+			end}
+		{else
+			begin
+				x:=x-10
+				y:=y-25;
+				z:=x+y;
+			end}
+		{proc1;}
+	end.
+
+

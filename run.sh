@@ -1,0 +1,2 @@
+javac -d bin src/util/*.java src/infra/*.java src/business/model/*.java src/business/control/lexico/*.java src/business/control/lexico/estados/*.java src/business/control/sintatico/*.java src/business/control/semantico/*.java src/main/*.java
+java -classpath bin main.Main

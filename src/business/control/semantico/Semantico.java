@@ -161,7 +161,11 @@ public class Semantico {
 		this.pilhaPcT.push(tipo);
 	}
 	
-	public void verificarTipoPcT(String tipo, int linha) {
+	public void verificarTipoPcTDaExpressao(String tipo, int linha) {
+		/* Caso essa chamada seja para verificar o tipo de uma expressão
+		 * X para uma atribuição do tipo Y := X, se Y for do tipo real
+		 * o tipo resultante da expressão X pode ser real ou integer
+		 * */
 		if((tipo.equals("real") && this.pilhaPcT.topo().matches("real|integer")) ||
 				this.pilhaPcT.topo().equals(tipo)) {
 			
@@ -172,25 +176,14 @@ public class Semantico {
 			this.lancarExcessaoIncompatibilidadeTipos(tipo, linha);
 	}
 	
-	public void verificarCompatibilidadeTipoParaOperacaoReconhecida(int tipoOperacao, int linha) {
-		switch(tipoOperacao) {
-			// Operação relacional ou de sinal (positivo e negativo)
-			case 0:
-				if(!(this.pilhaPcT.topo().equals("integer") || this.pilhaPcT.topo().equals("real")))
-					this.lancarExcessaoIncompatibilidadeTipos("integer ou real", linha);
-					
-				break;
-			
-			// Operação lógica
-			case 1:
-				if(!this.pilhaPcT.topo().equals("boolean"))
-					this.lancarExcessaoIncompatibilidadeTipos("boolean", linha);
-				
-				break;
-			
-			default:
-				break;
-		}
+	public void verificarTipoPcTParaOperadorSinal(int linha) {
+		if(!(this.pilhaPcT.topo().equals("integer") || this.pilhaPcT.topo().equals("real")))
+			this.lancarExcessaoIncompatibilidadeTipos("integer ou real", linha);
+	}
+	
+	public void verificarTipoPcTParaOperadorNot(int linha) {
+		if(!this.pilhaPcT.topo().equals("boolean"))
+			this.lancarExcessaoIncompatibilidadeTipos("boolean", linha);
 	}
 	
 	public String getTipoPcT() {

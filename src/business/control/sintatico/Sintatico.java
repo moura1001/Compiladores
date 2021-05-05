@@ -141,11 +141,6 @@ public class Sintatico {
 				this.token = this.lexico.getProximoToken();
 				this.tipo();
 				
-				//TODO apagar isso?
-				//Parte do analisador semântico - Verificação de tipos
-				//Semantico.obterInstancia().atribuirTipoIdentificadores(this.token.getToken());
-				/////////////////////////////////////////////////
-				
 				if(this.token.getToken().equals(";")) {
 				
 					this.token = this.lexico.getProximoToken();
@@ -176,11 +171,6 @@ public class Sintatico {
 			
 				this.token = this.lexico.getProximoToken();
 				this.tipo();
-				
-				//TODO apagar isso?
-				//Parte do analisador semântico - Verificação de tipos
-				//Semantico.obterInstancia().atribuirTipoIdentificadores(this.token.getToken());
-				/////////////////////////////////////////////////
 				
 				if(this.token.getToken().equals(";")) {
 				
@@ -597,7 +587,7 @@ public class Sintatico {
 			
 			
 			//Parte do analisador semântico - Verificação de tipos
-			this.semantico.verificarTipoPcT("boolean", linha);
+			this.semantico.verificarTipoPcTDaExpressao("boolean", linha);
 			/////////////////////////////////////////////////
 			
 			
@@ -625,7 +615,7 @@ public class Sintatico {
 			
 			
 			//Parte do analisador semântico - Verificação de tipos
-			this.semantico.verificarTipoPcT("boolean", linha);
+			this.semantico.verificarTipoPcTDaExpressao("boolean", linha);
 			/////////////////////////////////////////////////
 			
 			
@@ -666,7 +656,7 @@ public class Sintatico {
 				this.expressao();
 				
 				//Parte do analisador semântico - Verificação de tipos
-				this.semantico.verificarTipoPcT(tipo, linha);
+				this.semantico.verificarTipoPcTDaExpressao(tipo, linha);
 				/////////////////////////////////////////////////
 				
 				return true;
@@ -746,11 +736,6 @@ public class Sintatico {
 			this.semantico.usarIdentificador(this.token, true);
 			/////////////////////////////////////////////////
 		
-			//if(!this.semantico.getUltimoIdentificadorUsado().getTipo().equals("procedimento"))
-			//	throw new SintaticoException("Erro sintático na linha " + this.token.getLinha()
-			//			+ ". Expressão ilegal utilizando o token "
-			//			+ this.token.getToken() + " que é uma variável.");
-			
 			this.token = this.lexico.getProximoToken();
 			try {
 			
@@ -860,29 +845,15 @@ public class Sintatico {
 	private void expressao2() throws SintaticoException {
 		
 		int linha = this.token.getLinha();
-		//int oprRelacional;
+		
 		if(!this.operadorRelacional())
 			return;
-		
-		//Parte do analisador semântico - Verificação de tipos
-		//if(oprRelacional == 2)
-		//	this.semantico.verificarCompatibilidadeTipoParaOperacaoReconhecida(0, linha);
-		//else
-		//	this.semantico.verificarCompatibilidadeTipoParaOperacaoReconhecida(1, linha);
-		/////////////////////////////////////////////////
 		
 		try {
 		
 			//linha = this.token.getLinha();
 			
 			this.expressaoSimples();
-			
-			//Parte do analisador semântico - Verificação de tipos
-			//if(oprRelacional == 2)
-			//	this.semantico.verificarCompatibilidadeTipoParaOperacaoReconhecida(0, linha);
-			//else
-			//	this.semantico.verificarCompatibilidadeTipoParaOperacaoReconhecida(1, linha);
-			/////////////////////////////////////////////////
 			
 			//Parte do analisador semântico - Verificação de tipos
 			this.semantico.verificarCompatibilidadeTiposParaOperacaoRelacional(linha);
@@ -910,7 +881,7 @@ public class Sintatico {
 			
 			//Parte do analisador semântico - Verificação de tipos
 			if(temSinal)
-				this.semantico.verificarCompatibilidadeTipoParaOperacaoReconhecida(0, linha);
+				this.semantico.verificarTipoPcTParaOperadorSinal(linha);
 			/////////////////////////////////////////////////
 			
 			this.expressaoSimples2();
@@ -1036,22 +1007,6 @@ public class Sintatico {
 		
 		}
 		
-		/*if(this.token.getToken().equals("true")) {
-			
-			this.token = this.lexico.getProximoToken();
-			
-			return;			
-		
-		}
-		
-		if(this.token.getToken().equals("false")) {
-			
-			this.token = this.lexico.getProximoToken();
-			
-			return;			
-		
-		}*/
-		
 		if(this.token.getClassificacao().equals("Booleano")) {
 			
 			//Parte do analisador semântico - Verificação de tipos
@@ -1096,8 +1051,7 @@ public class Sintatico {
 				this.fator();
 				
 				//Parte do analisador semântico - Verificação de tipos
-				//this.semantico.verificarTipoPcT("boolean", linha);
-				this.semantico.verificarCompatibilidadeTipoParaOperacaoReconhecida(1, linha);
+				this.semantico.verificarTipoPcTParaOperadorNot(linha);
 				/////////////////////////////////////////////////
 				
 			

@@ -16,7 +16,7 @@ class PilhaIdentificadores {
 		return this.elementos.size();
 	}
 	
-	public Identificador peek() throws EmptyStackException {
+	public Identificador topo() throws EmptyStackException {
 		if(!this.elementos.isEmpty())
 			return this.elementos.get(this.elementos.size() - 1);
 		

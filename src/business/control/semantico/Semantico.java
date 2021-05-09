@@ -144,7 +144,7 @@ public class Semantico {
 	public void atribuirTipoIdentificadores(String tipo) {
 		int index = this.pilhaIdentificadores.size() - 1;
 		
-		Identificador identificador = this.pilhaIdentificadores.peek();
+		Identificador identificador = this.pilhaIdentificadores.topo();
 		
 		while(index >= 0 &&
 				!identificador.isMarcado()) {

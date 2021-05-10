@@ -649,7 +649,6 @@ public class Sintatico {
 				
 				//Parte do analisador semântico - Verificação de tipos
 				String tipo = this.semantico.getUltimoIdentificadorUsado().getTipo();
-				this.semantico.armazenarTipoNaPcT(tipo);
 				/////////////////////////////////////////////////
 				
 				this.token = this.lexico.getProximoToken();

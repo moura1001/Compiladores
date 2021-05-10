@@ -6,7 +6,7 @@ var a,b: integer;
 	end;
 
 	procedure p (x:integer);
-	var b,c: integer;
+	var b,c: real;
 		p_aux: boolean;
 		b_aux: real;
 	begin
@@ -15,7 +15,7 @@ var a,b: integer;
 		if((x<0) and not(b_aux<c)) then
 		begin
 			writeln((true and p_aux) or false and p_aux);
-			p(c);
+			p(8{b,c});
 		end;
 	end;
 
